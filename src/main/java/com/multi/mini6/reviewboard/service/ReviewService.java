@@ -51,11 +51,12 @@ ReviewDAO reviewDAO;
         return reviewDAO.count();
     }
 
-    public List<ReviewVO> search(String keyword) {
-        return reviewDAO.search(keyword);
+    public List<ReviewVO> search(PageVo pageVo) {
+        return reviewDAO.search(pageVo);
     }
-    public int searchCount(String keyword) {
-        return reviewDAO.searchCount(keyword);
+
+    public int searchCount(PageVo pageVo) {
+        return reviewDAO.searchCount(pageVo);
     }
 }
 

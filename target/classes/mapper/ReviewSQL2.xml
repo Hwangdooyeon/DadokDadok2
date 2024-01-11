@@ -43,7 +43,7 @@
 	<select id="reviewcount" resultType="int"> <!-- ==> PAGEDAO랑 연결됨 -->
 		select count(*) from review
 	</select>
-	<select id="searchCount"  parameterType="string" resultType="int"> <!-- ==> PAGEDAO랑 연결됨 -->
+	<select id="searchCount"  parameterType="reviewVO" resultType="int"> <!-- ==> PAGEDAO랑 연결됨 -->
 		select count(*) from review
 		WHERE review_title LIKE CONCAT('%', #{keyword},'%')
 	</select>
@@ -59,7 +59,7 @@
 		where r2.review_no BETWEEN #{start} and #{end}
 
 	</select>
-	<select id="search" parameterType="string" resultType="reviewVO">
+	<select id="search" parameterType="pageVO2" resultType="reviewVO">
 
 		select *
 		from

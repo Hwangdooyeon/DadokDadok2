@@ -49,7 +49,7 @@
             <div class="col-md-6 text-center">
                 <form action="review_search" class="d-flex justify-content-center" >
                     <input type = "hidden" name="page" value="1">
-                    <input name="keyword" class="form-control form-control-sm me-2" type="search" placeholder="검색어를 입력하세요"
+                    <input name="keyword" id ="keyword" class="form-control form-control-sm me-2" type="search" placeholder="검색어를 입력하세요"
                         aria-label="Search">
 
                     <button class="btn btn-outline-success btn-sm" type="submit">검색</button>

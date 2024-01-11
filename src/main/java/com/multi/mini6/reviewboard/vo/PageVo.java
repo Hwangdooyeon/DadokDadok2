@@ -16,6 +16,8 @@ public class PageVo {
         // 1페이지 * 10 = 10
         // 2페이지 * 10 = 20
     }
+    private String keyword;
+
     public void setPage(int page) {
         this.page = page;
     }
@@ -38,5 +40,11 @@ public class PageVo {
     public String toString() {
         return "PageVO2 [start=" + start + ", end=" + end + "]";
     }
+    public String getKeyword() {
+        return keyword;
+    }
 
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
 }

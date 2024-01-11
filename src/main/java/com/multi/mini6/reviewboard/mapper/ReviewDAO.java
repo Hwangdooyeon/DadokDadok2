@@ -42,10 +42,11 @@ public class ReviewDAO {
     public int count() {
         return my.selectOne("reviewcount");
     }
-    public List<ReviewVO> search(String keyword) {
-        return my.selectList("search", keyword);
+    public List<ReviewVO> search(PageVo pageVo) {
+        return my.selectList("search", pageVo);
     }
-    public int searchCount(String keyword) {
-        return my.selectOne("searchCount",keyword);
+
+    public int searchCount(PageVo pageVo) {
+        return my.selectOne("searchCount", pageVo);
     }
 }

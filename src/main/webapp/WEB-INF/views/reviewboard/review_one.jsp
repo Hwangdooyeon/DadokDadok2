@@ -62,7 +62,6 @@
 
 
              alert("댓글 수정이 완료되었습니다." + response1)
-
              $(document).on("click", ".btn-delete", function() {
                  let cm_id = $(this).val();
 
@@ -116,48 +115,63 @@
 
 
     <style>
-        body {
-            padding-top: 50px;
-        }
+.title-section {
+    text-align: center;
+    margin-top: 50px; /* 제목과 상단 간격 조정 */
+}
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            text-align: center;
-        }
+    .edit-delete-buttons {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        /* 추가적인 스타일링이 필요하다면 여기에 작성하세요. */
+    }
+    .content-section {
+        width: 60%;
+        float: left;
+        padding-right: 20px; /* 이미지와 내용 사이 간격 조정 */
+    }
 
-        .comment-section {
-            margin-top: 30px;
-        }
+    .image-section {
+        width: 30%;
+        float: left;
+    }
 
-        .comment-card {
-            margin-bottom: 20px;
-        }
-
-        .comment-card .card-body {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .comment-card .card-body .comment-content {
-            margin-bottom: 10px;
-        }
+    .edit-delete-buttons {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        /* 추가적인 스타일링이 필요하다면 여기에 작성하세요. */
+    }
     </style>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6"></div> <!-- 왼쪽 여백을 만들기 위한 빈 칼럼 -->
+        <div class="col-md-6 d-flex justify-content-end"> <!-- 오른쪽 상단 맨 끝으로 버튼 배치 -->
+            <a href="review_insert_move" class="btn btn-primary mr-2">게시글 작성</a>
+            <a href="review_update_move" class="btn btn-primary mr-2">글 수정하기</a>
+            <a href="review_delete_move" class="btn btn-primary">글 삭제하기</a>
+        </div>
+    </div>
+</div>
 <div>
 <div class="container mt-4">
-    <h2>${reviewVO.review_title}</h2>
+    <div class="title-section">
+        <h2>${reviewVO.review_title}</h2>
+    </div>
     <p>작성자: ${reviewVO.member_id}</p>
     <p>작성일자: ${reviewVO.review_createdAt}</p>
     <p>수정일자: ${reviewVO.review_updatedAt}</p>
     <p>조회수: ${reviewVO.review_views}</p>
-    <hr>
-    <div>
-        <p>${reviewVO.review_content}</p>
-    </div>
-       <hr class="mt-4 mb-4">
+
+ <div class="text-right">
+                <div style="margin: 0 auto; max-width: 600px;">
+                    <p>${reviewVO.review_content}</p>
+                </div>
+            </div>
+
         <div class="input-group mb-3">
             <input id="review" type="text" class="form-control" placeholder="댓글입력">
             <div class="input-group-append">

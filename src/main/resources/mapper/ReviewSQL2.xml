@@ -59,7 +59,7 @@
 		where r2.review_no BETWEEN #{start} and #{end}
 
 	</select>
-	<select id="search" parameterType="reviewVO" resultType="reviewVO">
+	<select id="search" parameterType="pageVO2" resultType="reviewVO">
 
 		select *
 		from

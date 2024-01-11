@@ -130,24 +130,16 @@ public class ReviewController {
 
     @RequestMapping("/review_search")
     public String listWithSearch(PageVo pageVO, Model model, @RequestParam(value = "keyword", required = false) String keyword) {
-        // 페이지 설정
         int count = 0;
         pageVO.setStartEnd();
         List<ReviewVO> list;
-        System.out.println(keyword);
-        System.out.println(keyword != null);
-        System.out.println(!keyword.equals(""));
+        ReviewVO reviewVO = new ReviewVO();
+        reviewVO.setKeyword(keyword);
 
-        if (keyword != null && !keyword.equals("")) {
-            System.out.println("if");
-            // 검색어가 존재하면 검색 실행
-            list = reviewService.search(keyword);
-            //list =  reviewService.review_list3(pageVO);
-            count = reviewService.searchCount(keyword);
+        if (keyword != null && !keyword.isEmpty()) {
+            list = reviewService.search(pageVO);
+            count = reviewService.searchCount(pageVO);
         } else {
-            System.out.println("else문");
-
-            // 검색어가 없으면 기본 목록 가져오기
             list = reviewService.review_list3(pageVO);
             count = reviewService.count();
         }
@@ -167,7 +159,9 @@ public class ReviewController {
         model.addAttribute("count", count);
         model.addAttribute("keyword", keyword);
 
+
         System.out.println("list size" + list.size());
+
         return "reviewboard/review_list3";
     }
 }
