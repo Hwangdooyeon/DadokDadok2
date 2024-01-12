@@ -49,4 +49,12 @@ public class ReviewDAO {
     public int searchCount(PageVo pageVo) {
         return my.selectOne("searchCount", pageVo);
     }
+
+    public int increaseViews(int reviewId) {
+        return my.update("increaseViews", reviewId);
+    }
+
+    public int getReviewViews(int reviewId) {
+        return my.selectOne("getReviewViews", reviewId);
+    }
 }

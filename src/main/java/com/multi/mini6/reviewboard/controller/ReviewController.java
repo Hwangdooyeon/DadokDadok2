@@ -10,8 +10,7 @@ import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -161,6 +160,16 @@ public class ReviewController {
 
 
         System.out.println("list size" + list.size());
+
+        return "reviewboard/review_list3";
+    }
+    @RequestMapping("/review_views")
+    public String viewDetail(Model model, @RequestParam("seq") int seq) {
+        // 리뷰 정보를 모델에 추가
+        model.addAttribute("reviewboard", reviewService.increaseViews(seq));
+
+        // 리뷰의 조회수를 증가시킴
+        reviewService.increaseViews(seq);
 
         return "reviewboard/review_list3";
     }

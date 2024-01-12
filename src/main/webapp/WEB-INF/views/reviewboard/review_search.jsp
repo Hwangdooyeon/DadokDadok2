@@ -6,22 +6,6 @@
     <meta charset="UTF-8">
     <title>Review Search Results</title>
     <!-- 여기에 필요한 CSS, 스타일링, 스크립트 등을 포함하시면 됩니다. -->
-    <script type="text/javascript">
-     $(function() {
-     $('.result').click(function() {
-     $.ajax({
-     url: "review_list3",
-     data: {
-     page: $(this).text()
-                    },
-                    success: function(table) {
-                        $('#result').html(table);
-                    } //success
-                }) //ajax
-            })
-        })
-
-    </script>
 </head>
 <body>
     <h1>Review Search Results</h1>
@@ -30,7 +14,7 @@
   <div id="result">
               <%
                   //jsp에서 자동 import : 클릭하고 ctrl + shiftl + m
-                  List<ReviewVO> list = (List<ReviewVO>) request.getAttribute("list");
+                  List<ReviewVO> list = (List<ReviewVO>) request.getAttribute("keyword");
               %>
               <div class="container mt-4">
                   <table class="table">

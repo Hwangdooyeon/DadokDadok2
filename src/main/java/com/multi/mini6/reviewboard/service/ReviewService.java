@@ -5,6 +5,7 @@ import com.multi.mini6.reviewboard.vo.ReviewVO;
 import com.multi.mini6.reviewboard.mapper.ReviewDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -57,6 +58,13 @@ ReviewDAO reviewDAO;
 
     public int searchCount(PageVo pageVo) {
         return reviewDAO.searchCount(pageVo);
+    }
+    @Transactional
+    public int increaseViews(int reviewId) {
+        return reviewDAO.increaseViews(reviewId);
+    }
+    public int getReviewViews(int reviewId) {
+        return reviewDAO.getReviewViews(reviewId);
     }
 }
 

@@ -27,10 +27,12 @@
 <script type="text/javascript">
                         $(function() {
                             $('.btn').click(function() {
+
                                 $.ajax({
-                                    url: "review_list33",
+                                    url: "review_list33", //review_search
                                     data: {
-                                        page: $(this).text()
+                                        page: $(this).text(),
+                                        //keyword
                 },
                 success: function(table) {
                     $('#result').html(table);
@@ -38,6 +40,28 @@
             }) //ajax
         })
     })
+     $(function() {
+         $('.btn.btn-outline-secondary').click(function() {
+             var keyword = "your_keyword_value";
+
+             $.ajax({
+                 url: "review_search",
+                 data: {
+                     page: $(this).text(),
+                     keyword: keyword
+                 },
+                 success: function(response) {
+                     // 성공적으로 데이터를 받아왔을 때의 처리
+                     console.log(response);
+                 },
+                 error: function(error) {
+                     // 에러 발생 시의 처리
+                     console.error(error);
+                 }
+             });
+         });
+     });
+
 
 </script>
 </head>

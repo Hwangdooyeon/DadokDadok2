@@ -17,14 +17,12 @@
 <script type="text/javascript">
     $(function() {
         $(".btn-edit").click(function() {
-            alert("edit");
+
 
             let cm_id = this.value;
             let content = $("#cm_content_" + cm_id).val();
             let member_id= $("#member_id_" + cm_id).val();
 
-            alert(content);
-            alert(member_id);
 
             $("#div_"+ cm_id).empty();
             $("#div_"+ cm_id).append(member_id + "<br />");
@@ -35,8 +33,23 @@
 
         });
 
+        $(document).on("click", ".btn-delete", function() {
+
+            let cm_id = $(this).val();
+
+             $.ajax({
+                 url: "review_comment_delete", // 삭제를 담당하는 컨트롤러 URL
+                 data: {
+                     cm_id: cm_id // 삭제할 댓글의 ID
+                 },
+                 success: function(response) {
+                     $('#div_${cm_id}').parent().remove();
+                     alert("댓글 삭제가 완료되었습니다.");
+                 } //success
+             }); //ajax
+        }); ;//document.on
+
         $(document).on("click", ".btn-update", function() {
-        alert("click")
             let cm_id = $(this).val();
             let updatedContent = $("#content_" + cm_id).val()
             let updatedWriter = $("#member_id_" + cm_id).val();
@@ -57,60 +70,49 @@
 
              },
              success: function(response1) {
-             alert(response1);
              $('#div_').append("<div class='card mb-2'><div class='card-body'>"  + response1 +"</div></div>" )
 
 
-             alert("댓글 수정이 완료되었습니다." + response1)
-             $(document).on("click", ".btn-delete", function() {
-                 let cm_id = $(this).val();
+             alert("댓글 수정이 완료되었습니다.")
 
-                 $.ajax({
-                     url: "review_comment_delete", // 삭제를 담당하는 컨트롤러 URL
-                     data: {
-                         cm_id: cm_id // 삭제할 댓글의 ID
-                     },
-                     success: function(response) {
-                         $('#div_${cm_id}').parent().remove();
-                         alert("댓글 삭제가 완료되었습니다.");
-                     }
-                 });
-             });
 
              }
         });
 
 
     });
-           $(function() {
+         $(function() {
+             $('#b1').click(function() {
+                 console.log(${reviewVO.review_id})
+                 console.log($('#review').val())
+                 console.log(${user})
 
+                 $.ajax({
+                     url: "review_comment_insert",
+                     type: "POST",
+                     data: {
+                         review_id : '${reviewVO.review_id}',
+                         cm_content : $('#review').val(),
+                         member_id : '${user}'
+                     },
+                     success: function(response) {
 
-                      })
-
-                      $('#b1').click(function() {
-                          console.log(${reviewVO.review_id})
-                           console.log($('#review').val())
-                            console.log(${user})
-
-
-                          $.ajax({
-                              url: "review_comment_insert",
-                              data: {
-                                  review_id : '${reviewVO.review_id}',
-                                  cm_content : $('#review').val(),
-                                  member_id : '${user}'
-
-                              },
-                              success: function(response) {
-                               $('#result').append("<div class='card mb-2'><div class='card-body'>" + response +"</div></div>" )
-
-                                  alert("댓글 작성이 완료되었습니다." + response)
-
-                              }
-                          })
-                      })
-
-                  })
+                         $('#result').append(`
+                             <div class='card mb-2'>
+                                 <div class='card-body'>
+                                     ${response}
+                                     <button class='btn-edit' id='btn_${dto.getCm_id()}' value='${dto.getCm_id()}'>댓글수정</button>
+                                     <button class='btn-delete' value='${dto.getCm_id()}'>댓글삭제</button>
+                                 </div>
+                             </div>
+                         `);
+                         $('#review').val('');
+                         alert("댓글 작성이 완료되었습니다." + response)
+                     }
+                 })
+             })
+         })
+                   })
 </script>
 
 
